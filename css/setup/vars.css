@@ -10,4 +10,8 @@
 
   /* SECONDARY */
   --colorSecondaryBase: rgb(254, 254, 254);
+
+  /* MARGINS */
+  --sectionMarginBlock: 15px;
+  --elementMarginBlcok: 1em
 }

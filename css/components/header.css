@@ -1,8 +1,7 @@
 header {
     height: 75px;
     border-radius: 3em;
-    margin-block: 15px;
-
+    margin-block: var(--sectionMarginBlock);
     background: linear-gradient(to right, var(--colorGradientStart), var(--colorGradientEnd));
     align-content: center;
 }

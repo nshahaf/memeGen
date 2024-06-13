@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +18,23 @@
             </div>
         </nav>
     </header>
-    
+
 
     <section class="gallery-container">
-        <section class="search">
-
+        <section class="search flex space-even">
+            <div class="search-bar">
+                <input type="text" class="input-search round" placeholder="Search">
+                <i class="icon"></i>
+            </div>
+            <div class="tags round">
+                <ul class="flex space-even align-center">
+                    <li>tag1</li>
+                    <li>tag2</li>
+                    <li>tag3</li>
+                    <li>tag4</li>
+                </ul>
+            </div>
+            <button class="btn-tag round">More</button>
         </section>
 
         <section class="gallery">
@@ -31,10 +44,10 @@
 
     </section>
 
-    <section class="editor-container">
+    <section class="editor-container " hidden>
 
     </section>
-    
+
     <footer class="full-width"></footer>
 
 
@@ -46,4 +59,5 @@
 
     <script src="js/app.controller.js"></script>
 </body>
+
 </html>

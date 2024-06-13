@@ -3,12 +3,14 @@
 }
 
 html {
+  font-size: 16px;
+  font-family: 'poppins-regular' ;
   background-color: var(--colorPrimaryBase);
 }
 
 body {
   margin: 0;
-  width: 100vw;
+  
   height: 100vh;
 }
 
@@ -54,9 +56,6 @@ button:hover {
   
 }
 
-.btn.rounded {
-  border-radius: 2em;
-}
 
 .btn.arrow {
   position: relative;
@@ -72,5 +71,19 @@ button:hover {
   content: " →";
   position: absolute;
   right: 0.625em;
+}
+
+ul {
+  margin: 0;
+  height: 100%;
+  padding-inline: 0;
+}
+li {
+  list-style: none;
+  cursor: pointer;
+}
+
+li:hover{
+  text-decoration: underline;
 }
 

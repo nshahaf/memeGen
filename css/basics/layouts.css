@@ -2,7 +2,7 @@
 .page-layout {
     display: grid;
     grid-template-columns: minmax(20px,1fr) 1280px minmax(20px,1fr);
-    grid-template-rows:1fr 8fr 1fr ;
+    grid-template-rows:1fr 9fr;
     grid-column: 2;
 }
 

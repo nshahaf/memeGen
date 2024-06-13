@@ -6,8 +6,16 @@
     justify-content: space-between;
 }
 
+.space-even {
+    justify-content: space-evenly;
+}
+
 .align-center {
     align-items: center;
+}
+
+.round {
+    border-radius: 3em;
 }
 
 .clean-list {
