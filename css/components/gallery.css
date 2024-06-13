@@ -1,16 +1,15 @@
 .gallery-container {
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-rows: 1fr 9fr;
     border-radius: 1em;
     margin-block-end: var(--sectionMarginBlock);
     background-color: var(--colorPrimary1);
 }
 
+/* SEARCH BAR */
 .search {
     /* PARENT */
-    grid-row: 1;
+    
     align-items: center;
+    height: fit-content;
 
     /* SELF */
     display: grid;
@@ -81,4 +80,33 @@ div.tags {
     background: linear-gradient(to right, var(--colorGradientStart), var(--colorGradientEnd));
     color: var(--colorSecondaryBase);
     border: none;
+}
+
+/* GALLERY  */
+/* 
+width 200px 
+aspect-retio 1
+gap 30px
+margin inline 55px
+*/
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+    justify-content: center;
+    margin-block-end: 15px;
+    
+    
+} 
+
+.gallery img {
+    margin: 0;
+    aspect-ratio: 1;
+    width: 200px;
+    cursor: pointer;
+
+
+    border-radius: 2em;
+    box-shadow: 2px 4px 9px 0px;
 }

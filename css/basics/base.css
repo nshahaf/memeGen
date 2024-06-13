@@ -10,8 +10,6 @@ html {
 
 body {
   margin: 0;
-  
-  height: 100vh;
 }
 
 h1,
@@ -49,11 +47,6 @@ button {
   border: 1px solid currentColor;
   padding: 0.375em 1em;
   cursor: pointer;
-}
-
-.btn:hover,
-button:hover {
-  
 }
 
 
