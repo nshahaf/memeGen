@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/3ab3cf51f6.js" crossorigin="anonymous"></script>
     <title>memeGen</title>
 </head>
 
@@ -20,7 +21,7 @@
     </header>
 
 
-    <section class="gallery-container">
+    <section class="gallery-container" hidden>
         <section class="search flex space-even">
             <div class="search-bar">
                 <input type="text" class="input-search round" placeholder="Search">
@@ -62,7 +63,43 @@
 
     </section>
 
-    <section class="editor-container " hidden>
+    <section class="editor-container">
+        <div class="canvas-container">
+            <canvas height="" width=""></canvas>
+        </div>
+
+        <div class="control-container">
+            <input class="meme-text" type="text" placeholder="Put your text here">
+            <div class="text-controls">
+                <button class="btn control-switch" type="button">
+                    <i class="fa-solid fa-retweet"></i>
+                </button>
+                <button class="btn control-add" type="button">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <button class="btn control-erase" type="button">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+            <div class="font-styleing">
+                <button class="btn btn-increase-size">A+</button>
+                <button class="btn btn-decrease-size">A-</button>
+                <button class="btn btn-align-left">
+                    <i class="fa-solid fa-align-left"></i>
+                </button>
+                <button class="btn btn-align-center">
+                    <i class="fa-solid fa-align-justify"></i>
+                </button>
+                <button class="btn btn-align-right">
+                    <i class="fa-solid fa-align-right"></i>
+                </button>
+
+            </div>
+            <div class="file-managment">
+                <button>Share</button>
+                <button>Download</button>
+            </div>
+        </div>
 
     </section>
 

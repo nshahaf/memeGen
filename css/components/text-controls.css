@@ -1,0 +1,38 @@
+/* TEXT AND TEXT CONTROLS */
+.meme-text {
+    width: 90%;
+    border-radius: 2em;
+    padding: 10px 20px;
+    font-family: poppins-regular,Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    text-align: center;  
+}
+
+.text-controls {
+    display: block;
+}
+
+.text-controls > *{
+    aspect-ratio: 1;
+    width: 57px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    
+    font-size: 20px;   
+}
+
+.control-switch {
+    background: linear-gradient(-38deg, #65c3db 0%, #3fb1cd 50%, #0b97bb 100%);
+    box-shadow: 0px 2px 0px 0px rgb(49, 170, 200,0.5);
+}
+
+.control-add {
+    background: linear-gradient(-38deg, #42eb5c 0%, #37b349 100%, #37b349 100%);
+    box-shadow: 0px 2px 0px 0px rgb(60, 205, 82,0.5)
+}
+
+.control-erase {
+    background: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #ef5036 100%);
+    box-shadow: 0px 2px 0px 0px rgb(229, 63, 54,0.5)
+}
