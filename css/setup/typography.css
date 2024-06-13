@@ -1,16 +1,14 @@
-/* @font-face {
-  font-family: lato-bold;
-  src: url(/Fonts/lato-bold/lato.bold.ttf);
+@font-face {
+  font-family: poppins-regular;
+  src: url(/fonts/Poppins-Regular.ttf);
 }
 
 @font-face {
-  font-family: ;
-  src: url();
+  font-family: poppins-medium;
+  src: url(/fonts/Poppins-Medium.ttf);
 }
-@font-face {
-  font-family: ;
-  src: url();
-} */
+
+
 
 /* FONT AWESOME */
 /* 

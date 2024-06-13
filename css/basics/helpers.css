@@ -2,11 +2,11 @@
     display: flex;
 }
 
-.flex.space-between {
+.space-between {
     justify-content: space-between;
 }
 
-.flex.align-center {
+.align-center {
     align-items: center;
 }
 
@@ -20,3 +20,6 @@
     text-align: center;
 }
 
+.full-width {
+    grid-column: 1/-1;
+}

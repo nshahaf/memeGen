@@ -1,11 +1,13 @@
 :root {
   /* PRIMARY */
-  --colorPrimaryBase: #58c93a;
+  --colorPrimaryBase: rgb(34, 37, 44);
+  --colorPrimary1: rgb(56, 59, 66);
+  --colorPrimary2: rgb(135, 137, 141);
+
+  /* GRADIENT */
+  --colorGradientStart: rgb(15, 155, 180);
+  --colorGradientEnd: rgb(48, 187, 114);
 
   /* SECONDARY */
-  --colorSecondary2: #4f4e4e;
-  --colorSecondary1: #333;
-  --colorSecondaryBase: #000;
-  --colorSecondary-1: #fff;
-  --colorSecondary-2: #e1e1e1;
+  --colorSecondaryBase: rgb(254, 254, 254);
 }

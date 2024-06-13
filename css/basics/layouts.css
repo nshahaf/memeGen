@@ -1,3 +1,24 @@
 /* MAIN LAOUT */
+.page-layout {
+    display: grid;
+    grid-template-columns: minmax(20px,1fr) 1280px minmax(20px,1fr);
+    grid-template-rows:1fr 8fr 1fr ;
+    grid-column: 2;
+}
+
+header {
+    grid-area: 1/2;
+    
+}
+
+.gallery-container, .editor-container {
+    grid-area: 2/2;
+}
+
+footer {
+    grid-area: 3/2;
+    
+}
+
 
 

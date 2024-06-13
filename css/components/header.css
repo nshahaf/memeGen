@@ -1,0 +1,22 @@
+header {
+    height: 75px;
+    border-radius: 3em;
+    margin-block: 15px;
+
+    background: linear-gradient(to right, var(--colorGradientStart), var(--colorGradientEnd));
+    align-content: center;
+}
+
+.navbar-container {
+    margin-inline: 50px;
+
+    font-size: 22px;
+    font-family: 'poppins-regular';
+    color: var(--colorSecondaryBase);
+}
+
+.navbar-links{
+    width: 50%;
+    justify-content: center;
+    gap: 50px;
+}
