@@ -3,6 +3,7 @@
     width: 90%;
     border-radius: 2em;
     padding: 10px 20px;
+    margin-block-start: 30px;
     font-family: poppins-regular,Arial, Helvetica, sans-serif;
     font-size: 25px;
     text-align: center;  
@@ -25,6 +26,7 @@
 .control-switch {
     background: linear-gradient(-38deg, #65c3db 0%, #3fb1cd 50%, #0b97bb 100%);
     box-shadow: 0px 2px 0px 0px rgb(49, 170, 200,0.5);
+    padding-inline: 0;
 }
 
 .control-add {

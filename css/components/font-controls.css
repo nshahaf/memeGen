@@ -1,0 +1,27 @@
+.font-styleing {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    /* gap: 5px; */
+    padding: 20px;
+
+    
+
+    background-color: rgb(25, 165, 159);
+    border-radius: 10px;
+    /* height: 100px; */
+    box-shadow: 0px 0px 2px 0px rgb(0, 0, 0, 0.55);
+}
+
+.font-styleing > *{
+    background-color: white;
+    color: black;
+    border-radius: 10px; 
+    font-size: 20px;
+    padding: 0;
+    width: 54px;
+    height: 50px;
+}
+.font-styleing > *:hover {
+    border: 3px solid black;
+}
