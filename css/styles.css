@@ -13,8 +13,8 @@
 @import url(components/gallery.css);
 @import url(components/text-controls.css);
 @import url(components/font-controls.css);
-@import url(components/meme-canvas.css);
 @import url(components/file-managment.css);
+@import url(components/canvas.css);
 
 /* MQ  */
 @import url(mq.css);

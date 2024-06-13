@@ -6,10 +6,10 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
 
 
-    
 
 
-    // resizeCanvas()
+
+    resizeCanvas()
     // window.addEventListener('resize', resizeCanvas)
     // addMouseListeners()
     // addTouchListeners()
@@ -28,6 +28,25 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchend', onUp)
 }
+
+function onGalleryClick(el) {
+    //gallery state:
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'block'
+
+    //
+    // document.querySelector('.editor-container').style.display = 'flex'
+    // document.querySelector('.gallery-container').style.display = 'none'
+
+}
+
+function onImgClick(el) {
+    document.querySelector('.editor-container').style.display = 'flex'
+    document.querySelector('.gallery-container').style.display = 'none'
+    drawImg(el.src)
+}
+
+
 
 function getEvPos(ev) {
 

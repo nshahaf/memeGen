@@ -9,19 +9,19 @@
     <title>memeGen</title>
 </head>
 
-<body class="page-layout">
+<body onload="onInit()" class="page-layout">
     <header>
         <nav class="navbar-container flex space-between">
             <div class="navbar-logo">LOGO</div>
             <div class="navbar-links flex">
-                <a href="#">Gallery</a>
+                <a data-name="gallery" onclick="onGalleryClick(this)">Gallery</a>
                 <a href="#">About</a>
             </div>
         </nav>
     </header>
 
 
-    <section class="gallery-container" hidden>
+    <section class="gallery-container" style="display: none;">
         <section class="search flex space-even">
             <div class="search-bar">
                 <input type="text" class="input-search round" placeholder="Search">
@@ -39,33 +39,32 @@
         </section>
 
         <section class="gallery">
-            <img src="/img/1.jpg" alt="">
-            <img src="/img/2.jpg" alt="">
-            <img src="/img/3.jpg" alt="">
-            <img src="/img/4.jpg" alt="">
-            <img src="/img/5.jpg" alt="">
-            <img src="/img/6.jpg" alt="">
-            <img src="/img/7.jpg" alt="">
-            <img src="/img/8.jpg" alt="">
-            <img src="/img/9.jpg" alt="">
-            <img src="/img/10.jpg" alt="">
-            <img src="/img/11.jpg" alt="">
-            <img src="/img/12.jpg" alt="">
-            <img src="/img/13.jpg" alt="">
-            <img src="/img/14.jpg" alt="">
-            <img src="/img/15.jpg" alt="">
-            <img src="/img/16.jpg" alt="">
-            <img src="/img/17.jpg" alt="">
-            <img src="/img/18.jpg" alt="">
-        
+            <img src="/img/1.jpg" onclick="onImgClick(this)">
+            <img src="/img/2.jpg" onclick="onImgClick(this)">
+            <img src="/img/3.jpg" onclick="onImgClick(this)">
+            <img src="/img/4.jpg" onclick="onImgClick(this)">
+            <img src="/img/5.jpg" onclick="onImgClick(this)">
+            <img src="/img/6.jpg" onclick="onImgClick(this)">
+            <img src="/img/7.jpg" onclick="onImgClick(this)">
+            <img src="/img/8.jpg" onclick="onImgClick(this)">
+            <img src="/img/9.jpg" onclick="onImgClick(this)">
+            <img src="/img/10.jpg" onclick="onImgClick(this)">
+            <img src="/img/11.jpg" onclick="onImgClick(this)">
+            <img src="/img/12.jpg" onclick="onImgClick(this)">
+            <img src="/img/13.jpg" onclick="onImgClick(this)">
+            <img src="/img/14.jpg" onclick="onImgClick(this)">
+            <img src="/img/15.jpg" onclick="onImgClick(this)">
+            <img src="/img/16.jpg" onclick="onImgClick(this)">
+            <img src="/img/17.jpg" onclick="onImgClick(this)">
+            <img src="/img/18.jpg" onclick="onImgClick(this)">
         </section>
 
 
-    </section>
+    </section> 
 
-    <section class="editor-container">
+    <section class="editor-container" >
         <div class="canvas-container">
-            <canvas height="" width=""></canvas>
+            <canvas height="200" width="200"></canvas>
         </div>
 
         <div class="control-container">
