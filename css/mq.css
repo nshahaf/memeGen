@@ -1,0 +1,25 @@
+/* ONLY MOBILE */
+@media (max-width: 540px) {
+  
+}
+
+/* SMALL  */
+@media (min-width: 540px) {
+
+}
+
+/* MEDIUM  */
+@media (min-width: 840px) {
+  html {
+    font-size: 14px;
+  }
+
+}
+
+/* LARGE  */
+@media (min-width: 1020px) {
+  html {
+    font-size: 16px;
+  }
+
+}

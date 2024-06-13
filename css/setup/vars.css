@@ -1,0 +1,11 @@
+:root {
+  /* PRIMARY */
+  --colorPrimaryBase: #58c93a;
+
+  /* SECONDARY */
+  --colorSecondary2: #4f4e4e;
+  --colorSecondary1: #333;
+  --colorSecondaryBase: #000;
+  --colorSecondary-1: #fff;
+  --colorSecondary-2: #e1e1e1;
+}

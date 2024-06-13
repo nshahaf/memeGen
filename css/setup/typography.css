@@ -1,0 +1,40 @@
+/* @font-face {
+  font-family: lato-bold;
+  src: url(/Fonts/lato-bold/lato.bold.ttf);
+}
+
+@font-face {
+  font-family: ;
+  src: url();
+}
+@font-face {
+  font-family: ;
+  src: url();
+} */
+
+/* FONT AWESOME */
+/* 
+@font-face {
+  font-family: fa;
+  src: url(/Fonts/fa/fa-brands-400.ttf);
+}
+
+.fa::before {
+  font-family: fa;
+}
+
+.fa.facebook::before {
+  content: "\f39e";
+}
+
+.fa.twitter::before {
+  content: "\e61b";
+}
+
+.fa.behance::before {
+  content: "\f1b4";
+}
+
+.fa.dribbble::before {
+  content: "\f17d";
+} */
