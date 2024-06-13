@@ -9,6 +9,7 @@ function getCanvasCenter() {
 }
 
 function resizeCanvas() {
+    console.log('resizeCanvas()')
     const elContainer = document.querySelector('.canvas-container')
     //* Changing the canvas dimension clears the canvas
     gElCanvas.width = elContainer.clientWidth
@@ -19,20 +20,22 @@ function resizeCanvas() {
 }
 
 function clearCanvas() {
-    console.log('clear canvas')
+    console.log('clearCanvas()')
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-    gCtx.fillStyle = 'white'
+    gCtx.fillStyle = 'rgb(56, 59, 66)'
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
-    saveCanvas()
+    // saveCanvas()
 }
 
 //DOWNLOAD CANVAS TO LOCAL FILE
 function downloadCanvas(elLink) {
+    console.log('downloadCanvas()')
     const imgContent = gElCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
 
 function drawText(text, x, y) {
+    console.log('drawText()')
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = 'white'
@@ -43,9 +46,15 @@ function drawText(text, x, y) {
     gCtx.strokeText(text, x, y)
 }
 
-function drawImg(src) {
+function getCurrImg(src) {
+    console.log('getImg')
     let img = new Image()
     img.src = src
+    gCurrImg = img
+}
+
+function drawCurrImg(img = gCurrImg) {
+    console.log('drawImg()')
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 

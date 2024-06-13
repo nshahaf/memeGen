@@ -12,9 +12,9 @@
 <body onload="onInit()" class="page-layout">
     <header>
         <nav class="navbar-container flex space-between">
-            <div class="navbar-logo">LOGO</div>
+            <div class="navbar-logo">Meme Generator</div>
             <div class="navbar-links flex">
-                <a data-name="gallery" onclick="onGalleryClick(this)">Gallery</a>
+                <a data-name="gallery" onclick="onGalleryClick()">Gallery</a>
                 <a href="#">About</a>
             </div>
         </nav>
@@ -68,15 +68,15 @@
         </div>
 
         <div class="control-container">
-            <input class="meme-text" type="text" placeholder="Put your text here">
+            <input class="meme-text" type="text" placeholder="Put your text here" oninput="onTextInput()">
             <div class="text-controls">
                 <button class="btn control-switch" type="button">
                     <i class="fa-solid fa-retweet"></i>
                 </button>
-                <button class="btn control-add" type="button">
+                <button class="btn control-add" type="button" onclick="onAdd()">
                     <i class="fa-solid fa-plus"></i>
                 </button>
-                <button class="btn control-erase" type="button">
+                <button class="btn control-erase" type="button" onclick="onErase()"> 
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
@@ -95,8 +95,9 @@
 
             </div>
             <div class="file-managment">
-                <button class="btn-share">Share</button>
-                <button class="btn-download">Download</button>
+                <button class="btn-share" onclick="onUploadImg()">Share</button>
+                <button class="btn-download" onclick="document.getElementById('download-link').click()">Download</button>
+                <a href="#" id="download-link" onclick="onDownload(this)" download hidden></a>
             </div>
         </div>
 

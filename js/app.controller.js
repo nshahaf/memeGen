@@ -1,5 +1,7 @@
 var gElCanvas
 var gCtx
+var gTextInput
+var gCurrImg
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -29,24 +31,18 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-function onGalleryClick(el) {
-    //gallery state:
+function onGalleryClick() {
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'block'
-
-    //
-    // document.querySelector('.editor-container').style.display = 'flex'
-    // document.querySelector('.gallery-container').style.display = 'none'
-
 }
 
 function onImgClick(el) {
     document.querySelector('.editor-container').style.display = 'flex'
     document.querySelector('.gallery-container').style.display = 'none'
-    drawImg(el.src)
+    // drawImg(el.src)
+    getCurrImg(el.src)
+    drawCurrImg()
 }
-
-
 
 function getEvPos(ev) {
 
@@ -69,4 +65,22 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function onDownload(link) {
+    downloadCanvas(link)
+}
+
+function onErase() {
+    clearCanvas()
+}
+
+function onAdd() {
+    var text = document.querySelector('.meme-text').value
+    console.log(text)
+}
+
+function onTextInput(){
+    gTextInput = document.querySelector('.meme-text').value
+    console.log('text input:',gTextInput)
 }
