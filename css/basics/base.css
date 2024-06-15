@@ -3,7 +3,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px; /* 16 on full screen */
   font-family: 'poppins-regular' ;
   background-color: var(--colorPrimaryBase);
 }
