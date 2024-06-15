@@ -20,6 +20,7 @@ var gImgs = [
     { id: 17, url: 'img/17.jpg', keywords: ['funny', 'man'] },
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'toy'] },
 ]
+var gSearchKey = ''
 
 //DATABASE FUCNTIONS
 function getImgs() {//return the gImgs object
@@ -56,4 +57,9 @@ function getCurrImg(src) { // get current used img object
     gCurrImg = img
 }
 
-
+function filterByKeyword(key) {//get key value and filter the imgs by that key, return new imgs object
+    // const imgs = gImgs.filter(img => img.keywords.includes(key))
+    const imgs = gImgs.filter(img => img.keywords.some(word => word.includes(key)))
+    if (imgs.length === 0) return gImgs //if filter is not match, return all imgs
+    else return imgs
+}

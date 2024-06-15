@@ -11,6 +11,7 @@ var gIsSelected = false // img selected to edit
 var gIsClicked = false // mouse click
 var gIsDrag = false // enable text drag
 
+
 //MAIN
 function onInit() {
     gElCanvas = document.querySelector('canvas')
@@ -72,7 +73,8 @@ function onMove(ev) {
 //GALLERY CONTROLLER
 function renderGallery() {//render the img gallery from the gImgs array
     var gellary = document.querySelector('.gallery')
-    var imgs = getImgs()
+    // var imgs = getImgs()
+    var imgs = filterByKeyword(gSearchKey)
 
     var strHTML = imgs.map(img => `<img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
     gellary.innerHTML = strHTML.join('')
@@ -92,6 +94,19 @@ function onImgClick(el, id) {//handle img click gallery section
     getCurrImg(el.src)
     drawCurrImg()
     gIsSelected = true
+}
+
+function onSearchInput({value}){
+    console.log('value:',value)
+    gSearchKey = value
+    renderGallery()
+}
+
+function onTagClick(tagText){
+    var search = document.querySelector(".search input")
+    search.value = tagText
+    search.focus()
+    search.oninput()
 }
 
 

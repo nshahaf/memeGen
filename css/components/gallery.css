@@ -28,6 +28,7 @@
 
     font-size: 21px;
     background-color: var(--colorPrimaryBase);
+    color: var(--colorPrimary2);
 }
 
 .search-bar {

@@ -24,15 +24,15 @@
     <section class="gallery-container" style="display: none;">
         <section class="search flex space-even">
             <div class="search-bar">
-                <input type="text" class="input-search round" placeholder="Search">
+                <input type="text" class="input-search round" placeholder="Search" oninput="onSearchInput(this)">
                 <i class="icon"></i>
             </div>
             <div class="tags round">
                 <ul class="flex space-even align-center">
-                    <li>tag1</li>
-                    <li>tag2</li>
-                    <li>tag3</li>
-                    <li>tag4</li>
+                    <li onclick="onTagClick(this.innerText)">cute</li>
+                    <li onclick="onTagClick(this.innerText)">baby</li>
+                    <li onclick="onTagClick(this.innerText)">man</li>
+                    <li onclick="onTagClick(this.innerText)">funny</li>
                 </ul>
             </div>
             <button class="btn-tag round">More</button>
