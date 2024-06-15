@@ -39,24 +39,7 @@
         </section>
 
         <section class="gallery">
-            <img src="/img/1.jpg" onclick="onImgClick(this)">
-            <img src="/img/2.jpg" onclick="onImgClick(this)">
-            <img src="/img/3.jpg" onclick="onImgClick(this)">
-            <img src="/img/4.jpg" onclick="onImgClick(this)">
-            <img src="/img/5.jpg" onclick="onImgClick(this)">
-            <img src="/img/6.jpg" onclick="onImgClick(this)">
-            <img src="/img/7.jpg" onclick="onImgClick(this)">
-            <img src="/img/8.jpg" onclick="onImgClick(this)">
-            <img src="/img/9.jpg" onclick="onImgClick(this)">
-            <img src="/img/10.jpg" onclick="onImgClick(this)">
-            <img src="/img/11.jpg" onclick="onImgClick(this)">
-            <img src="/img/12.jpg" onclick="onImgClick(this)">
-            <img src="/img/13.jpg" onclick="onImgClick(this)">
-            <img src="/img/14.jpg" onclick="onImgClick(this)">
-            <img src="/img/15.jpg" onclick="onImgClick(this)">
-            <img src="/img/16.jpg" onclick="onImgClick(this)">
-            <img src="/img/17.jpg" onclick="onImgClick(this)">
-            <img src="/img/18.jpg" onclick="onImgClick(this)">
+            <img src="/img/1.jpg" onclick="onImgClick(this,1)">
         </section>
 
 
@@ -68,9 +51,9 @@
         </div>
 
         <div class="control-container">
-            <input class="meme-text" type="text" placeholder="Put your text here" oninput="onTextInput()">
+            <input class="meme-text" type="text" placeholder="Put your text here" oninput="onTextInput(this)">
             <div class="text-controls">
-                <button class="btn control-switch" type="button">
+                <button class="btn control-switch" type="button" onclick="onSwitchLine()">
                     <i class="fa-solid fa-retweet"></i>
                 </button>
                 <button class="btn control-add" type="button" onclick="onAdd()">
@@ -81,16 +64,37 @@
                 </button>
             </div>
             <div class="font-styleing">
-                <button class="btn btn-increase-size">A+</button>
-                <button class="btn btn-decrease-size">A-</button>
-                <button class="btn btn-align-left">
+                <button class="btn btn-increase-size" onclick="onSizeUp()">A+</button>
+                <button class="btn btn-decrease-size" onclick="onSizeDown()">A-</button>
+                <button class="btn btn-align-left" onclick="onAlignClick('left')">
                     <i class="fa-solid fa-align-left"></i>
                 </button>
-                <button class="btn btn-align-center">
+                <button class="btn btn-align-center" onclick="onAlignClick('center')">
                     <i class="fa-solid fa-align-justify"></i>
                 </button>
-                <button class="btn btn-align-right">
+                <button class="btn btn-align-right" onclick="onAlignClick('right')">
                     <i class="fa-solid fa-align-right"></i>
+                </button>
+                <select class="font-selector" name="font-selector" onchange="onFontChange(this)">
+                    <option value="impact">IMPACT</option>
+                    <option value="arial">ARIAL</option>
+                    <option value="verdana">VERDANA</option>
+                    <option value="tahoma">TAHOMA</option>
+                    <option value="trebuchet ms">TREBUCHET MS</option>
+                    <option value="times new roman">TIMES NEW  ROMAN</option>
+                    <option value="georgia">GEORGIA</option>
+                    <option value="garamond">GARAMOND</option>
+                    <option value="courier new">COURIER NEW</option>
+                    <option value="brush script mt">BRUSH SCRIPT MT</option>
+                    <option value="poppins">POPPINS</option>
+                </select>
+                <button class="btn btn-stroke" onclick="document.querySelector('.btn-stroke input').click()">
+                    <i class="fa-solid fa-brush"></i>
+                    <input type="color" name="stroke" oninput="onStrokeInput(this)" style="opacity: 0; position: absolute;">
+                </button>
+                <button class="btn btn-fill" onclick="document.querySelector('.btn-fill input').click()">
+                    <i class="fa-solid fa-fill-drip"></i>
+                    <input type="color" name="fill" oninput="onFillInput(this)" style="opacity: 0; position: absolute;">
                 </button>
 
             </div>

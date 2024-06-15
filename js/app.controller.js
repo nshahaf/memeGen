@@ -1,22 +1,32 @@
 'use strict'
+
 var gElCanvas
 var gCtx
-var gTextInput
+var gClickedPos // hold event value on drag
 var gCurrImg = null// holds the src, height and width of the currnet img
+var gTexts = [{ text: '', x: 250, y: 250, stroke: 'black', fill: 'black', size: 40, font: 'arial', align: 'center' }]
+var gTextInput = '' //hold the value from the text input
+var gCurrTextId = 0 //hold the current text idx
+var gIsSelected = false // img selected to edit
+var gIsClicked = false // mouse click
+var gIsDrag = false // enable text drag
 
 //MAIN
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-
+    gIsSelected - false
     resizeCanvas()
+    renderGallery()
     // window.addEventListener('resize', resizeCanvas)
-    // addMouseListeners()
-    // addTouchListeners()
+    addMouseListeners()
+    addTouchListeners()
 
     // loadFromStorage()
 }
 
+
+//MOUSE AND TOUCH EVENTS
 function addMouseListeners() { // event listeners for touch
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mousemove', onMove)
@@ -29,14 +39,43 @@ function addTouchListeners() {// event listeners for mouse
     gElCanvas.addEventListener('touchend', onUp)
 }
 
+function onDown(ev) {
+    gIsClicked = true
+    //get the current click event position
+    const { offsetX, offsetY } = ev
+
+    //check if a text is pressed and get his index
+    const idx = gTexts.findIndex(text => isPressed(text, offsetX, offsetY))
+    if (idx !== -1) {
+        gCurrTextId = idx
+        gIsDrag = true
+        gTextInput = gTexts[idx].text
+        updateTextControlls()
+        renderMeme()
+    }
+   
+}
+
+function onUp() {
+    gIsDrag = false
+    gIsClicked = false
+    renderMeme()
+}
+
+function onMove(ev) {
+    if (!gIsClicked) return // return if mouse is up
+    if (!gIsDrag) return // return if no text is selected
+
+    onTextDrag(ev)
+}
+
 //GALLERY CONTROLLER
 function renderGallery() {//render the img gallery from the gImgs array
-    var gellary = documnet.querySelector('gallery')
+    var gellary = document.querySelector('.gallery')
     var imgs = getImgs()
 
     var strHTML = imgs.map(img => `<img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
     gellary.innerHTML = strHTML.join('')
-
 }
 
 function onGalleryClick() {// handle gallery click in nav bar
@@ -44,20 +83,22 @@ function onGalleryClick() {// handle gallery click in nav bar
     document.querySelector('.gallery-container').style.display = 'block'
 }
 
-function onImgClick(el,id) {//handle img click gallery section
-    
+function onImgClick(el, id) {//handle img click gallery section
+
     document.querySelector('.editor-container').style.display = 'flex'
     document.querySelector('.gallery-container').style.display = 'none'
-    
+
     gMemeUpdate(id)
     getCurrImg(el.src)
     drawCurrImg()
+    gIsSelected = true
 }
 
 
 //EDITOR CONTROLLER
 function resizeContainer() { //resize the container to the img size
-    console.log('resizeContainer()')
+
+    // console.log('resizeContainer()')
     //resize the container to the img size
     const elContainer = document.querySelector('.canvas-container')
     elContainer.width = gCurrImg.width
@@ -65,7 +106,7 @@ function resizeContainer() { //resize the container to the img size
 }
 
 function resizeCanvas() { // resize the canvas to the container size
-    console.log('resizeCanvas()')
+    // console.log('resizeCanvas()')
     const elContainer = document.querySelector('.canvas-container')
     //Visually fill the positioned parent
     gElCanvas.style.width = '100%'
@@ -81,20 +122,6 @@ function getEvPos(ev) {// get the current event position in the canvas
         x: ev.offsetX,
         y: ev.offsetY
     }
-
-    if (TOUCH_EVS.includes(ev.type)) {
-        // Prevent triggering the mouse ev
-        // ev.preventDefault()
-        // Gets the first touch point
-        ev = ev.changedTouches[0]
-        // Calc the right pos according to the touch screen
-        pos = {
-            // x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            // y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-            x: ev.pageX,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-        }
-    }
     return pos
 }
 
@@ -106,8 +133,9 @@ function getCanvasCenter() { // return x,y of the canvas center
 }
 
 function onErase() {//on text Erase button click
-    clearCanvas()
+    // clearCanvas()
     drawCurrImg()
+    clearTexts()
 }
 
 function clearCanvas() { // clear the intire canvas
@@ -118,37 +146,189 @@ function clearCanvas() { // clear the intire canvas
     // saveCanvas()
 }
 
-function onAdd() {//on text Add button click
-    var text = document.querySelector('.meme-text').value
-    console.log(text)
+function clearTexts() {//delete all text lines and restart gTexts
+    if (!gIsSelected) {// if noo img is selected yet - just clear the text area
+        document.querySelector('.meme-text').value = ''
+        return
+    }
+
+    document.querySelector('.meme-text').value = ''
+    document.querySelector('.btn-stroke').value = 'black'
+    document.querySelector('.btn-fill').value = 'black'
+
     var { x: xCenter, y: yCenter } = getCanvasCenter()
-    drawText(text, xCenter, 50)
+    gTexts = [{ text: '', x: 250, y: 250, stroke: 'black', fill: 'black', size: 40, font: 'arial', align: 'center' }]
+    gCurrTextId = 0
 }
 
-function onTextInput() {//on text input change
-    gTextInput = document.querySelector('.meme-text').value
-    console.log('text input:', gTextInput)
+function onSizeUp() {
+    gTexts[gCurrTextId].size += 5
+    const { w, h } = getHeightAndWidth(gTextInput)
+    gTexts[gCurrTextId].width = Math.ceil(w)
+    gTexts[gCurrTextId].height = h
+    renderMeme()
+}
+
+function onSizeDown() {
+    gTexts[gCurrTextId].size -= 5
+    const { w, h } = getHeightAndWidth(gTextInput)
+    gTexts[gCurrTextId].width = Math.ceil(w)
+    gTexts[gCurrTextId].height = h
+    renderMeme()
+}
+
+function onAdd() {//on text Add button click
+    if (!gIsSelected) return // no action if no img is selected yet
+
+    var text = document.querySelector('.meme-text').value
+    var stroke = document.querySelector('.btn-stroke').value
+    var fill = document.querySelector('.btn-fill').value
+    var font = document.querySelector('.font-selector').value
+
+    var { x, y } = getCanvasCenter()
+    gTexts.push({ text, x, y, stroke, fill, size: gTexts[gCurrTextId].size, font, align: 'center' })
+    gCurrTextId += 1
+    renderMeme()
+    document.querySelector('.meme-text').value = ''
+}
+
+function onStrokeInput({ value }) {// on stroke color change
+    gTexts[gCurrTextId].stroke = value
+    renderMeme()
+}
+
+function onFillInput({ value }) { // on fill color change
+    gTexts[gCurrTextId].fill = value
+    renderMeme()
+}
+
+function onFontChange({ value }) {// on font change
+    gTexts[gCurrTextId].font = value
+
+    renderMeme()
+}
+
+function onAlignClick(value) {// on alignment change
+    gTexts[gCurrTextId].align = value
+    console.log('value:', value)
+    renderMeme()
+}
+
+function onTextInput({ value }) {//on text input change
+    if (!gIsSelected) return // no action if no img is selected yet
+    const { w, h } = getHeightAndWidth(value)
+
+    gTextInput = value
+    gTexts[gCurrTextId].text = value
+    gTexts[gCurrTextId].width = w
+    gTexts[gCurrTextId].height = h
+    renderMeme()
+}
+
+function onSwitchLine() {//toggle between the selected lines
+    var maxIdx = gTexts.length - 1
+
+    if (gCurrTextId < maxIdx) gCurrTextId += 1
+    else gCurrTextId = 0
+
+    console.log('gCurrTextId:', gCurrTextId)
+    updateTextControlls()
+    renderMeme()
 }
 
 function onDownload(link) {//on file download button click
     downloadCanvas(link)
 }
 
-function drawText(text, x, y) {//draw text in specified x,y location
-    console.log('drawText()')
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'white'
-    gCtx.font = '40px Arial'
-    gCtx.textAlign = 'center'
-    gCtx.textBaseline = 'middle'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+
+//RENDERING FUNCTIONS
+function drawCurrImg(img = gCurrImg) { // draw the current img object to the canvas
+    if (img !== null) {
+        resizeContainer()
+        resizeCanvas()
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        return
+    }
 }
 
-function drawCurrImg(img = gCurrImg) { // draw the current img object to the canvas
-    console.log('drawImg()')
-    resizeContainer()
-    resizeCanvas()
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+function drawTexts() {//render all text lines
+    console.log('drawTexts()')
+    gTexts.forEach(text => drawText(text));
 }
+
+function drawText(currText) {//draw text in specified x,y location
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = currText.stroke
+    gCtx.fillStyle = currText.fill
+    gCtx.font = `${currText.size}px ${currText.font}`
+    // gCtx.font = '40px Arial'
+    gCtx.textAlign = currText.align
+    gCtx.textBaseline = 'middle'
+    gCtx.fillText(currText.text, currText.x, currText.y)
+    gCtx.strokeText(currText.text, currText.x, currText.y)
+}
+
+function drawRectOnSelected() {//draw Rect around the selected text box
+    var { x, y, width, height, align} = gTexts[gCurrTextId]
+    //CALC POS
+    if (align === 'left') x = x
+    else if (align === 'center') x -= width/2 // can be deleted but remain for readability
+    else if (align === 'right') x -= width
+    var th = 5
+    var xStart = x - th
+    var yStart = y - height / 2 - th
+
+    //DRAW
+    gCtx.lineWidth = 0.5
+    gCtx.beginPath(); // Start a new path
+    gCtx.strokeStyle = 'black'
+    gCtx.rect(xStart, yStart, width + th * 2, height + th * 2); // Add a rectangle to the current path
+    gCtx.closePath()
+    gCtx.stroke()
+}
+
+function renderMeme() {//render the selected img and than draw the text lines
+    console.log('renderMeme')
+    drawCurrImg()
+    drawTexts()
+    drawRectOnSelected()
+}
+
+
+//TEXT CLICK AND DRAG AND DROP
+function onTextDrag(ev) {// change current text position
+    gClickedPos = getEvPos(ev)
+    var currText = gTexts[gCurrTextId]
+    if (currText.align === 'left') currText.x = gClickedPos.x - currText.width/2
+    else if (currText.align === 'center') currText.x = gClickedPos.x
+    else if (currText.align === 'right') currText.x = gClickedPos.x + currText.width/2
+    currText.y = gClickedPos.y - currText.height/2
+}
+
+function isPressed(text, offsetX, offsetY) {//return true if a text is pressed
+    //added some threshold for click placement, veriables are seperated for more flexability
+    var lth = 20
+    var cth = 20
+    var rth = 20
+
+    if (text.align === 'left') { return offsetX >= text.x + lth && offsetX <= text.x + text.width + lth && offsetY >= text.y && offsetY <= text.y + text.height }
+    else if (text.align === 'center') { return offsetX >= text.x - text.width / 2 && offsetX <= text.x + text.width / 2 + cth && offsetY >= text.y && offsetY <= text.y + text.height }
+    else if (text.align === 'right') { return offsetX >= text.x - text.width + rth && offsetX <= text.x + rth && offsetY >= text.y && offsetY <= text.y + text.height }
+}
+
+function getHeightAndWidth(text) {//return the height and width of a given text
+    const metrics = gCtx.measureText(text);
+    const h = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+    const w = metrics.width
+    return { w, h }
+}
+
+function updateTextControlls() {//on select, update the controlls to match the current selected text
+    var currText = gTexts[gCurrTextId]
+    document.querySelector('.meme-text').value = currText.text
+    document.querySelector('.font-selector').value = currText.font
+    document.querySelector('.btn-stroke').value = currText.stroke
+    document.querySelector('.btn-fill').value = currText.fill
+
+}
+

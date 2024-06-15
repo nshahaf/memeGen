@@ -21,13 +21,6 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'toy'] },
 ]
 
-var gTexts = []
-
-var gMeme = {
-    selectedImgId: 0, selectedLineIdx: 0,
-    lines: [{ txt: 'Put your text here', size: 20, color: 'red' }]
-}
-
 //DATABASE FUCNTIONS
 function getImgs() {//return the gImgs object
     return gImgs
@@ -53,11 +46,11 @@ function updateKeywords(id,keywords) {//update keywords in selected img
 }
 
 function gMemeUpdate(id) {
-    gMeme.selectedImgId = id
+   return id
 }
 
 function getCurrImg(src) { // get current used img object
-    console.log('getImg')
+    // console.log('getImg')
     let img = new Image()
     img.src = src
     gCurrImg = img
