@@ -54,7 +54,7 @@ function onDown(ev) {
         updateTextControlls()
         renderMeme()
     }
-   
+
 }
 
 function onUp() {
@@ -73,16 +73,22 @@ function onMove(ev) {
 //GALLERY CONTROLLER
 function renderGallery() {//render the img gallery from the gImgs array
     var gellary = document.querySelector('.gallery')
+
     // var imgs = getImgs()
     var imgs = filterByKeyword(gSearchKey)
 
-    var strHTML = imgs.map(img => `<img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
+    var strHTML = imgs.map(img => `
+        <img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
     gellary.innerHTML = strHTML.join('')
+
+    renderKeywords()
 }
 
 function onGalleryClick() {// handle gallery click in nav bar
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'block'
+    document.querySelector(".search input").focus()
+
 }
 
 function onImgClick(el, id) {//handle img click gallery section
@@ -96,19 +102,47 @@ function onImgClick(el, id) {//handle img click gallery section
     gIsSelected = true
 }
 
-function onSearchInput({value}){
-    console.log('value:',value)
+function onSearchInput({ value }) {
+    console.log('value:', value)
     gSearchKey = value
     renderGallery()
 }
 
-function onTagClick(tagText){
+function onTagClick(tagText) {
     var search = document.querySelector(".search input")
     search.value = tagText
     search.focus()
     search.oninput()
 }
 
+function renderKeywords() {
+    const keywords = getSortedKeywords()
+    const topKeywords = keywords.slice(0, 4)
+    const moreKeywords = keywords.slice(4)
+    var fontSize = 24
+
+    var elTopTags = document.querySelector(".top-tags")
+    var strHTML = topKeywords.map(keyword => `
+        <li onclick="onTagClick(this.innerText)" style="font-size:${fontSize-=2}px;">${keyword[0]}</li>`)
+    elTopTags.innerHTML = strHTML.join('')
+    
+    var elMoreTags = document.querySelector(".more-tags")
+    var strHTML = moreKeywords.map(keyword => `
+        <li onclick="onTagClick(this.innerText)" style="font-size:${fontSize--}px;">${keyword[0]}</li>`)
+    elMoreTags.innerHTML = strHTML.join('')
+}
+
+function onShowMore(elMoreBtn){
+    const elMoreTags = document.querySelector('.tags-more')
+   
+    if (elMoreBtn.innerText === 'More') {
+        elMoreTags.style.display = 'block' 
+        elMoreBtn.innerText = 'Hide'
+    } else {
+        elMoreTags.style.display = 'none'
+        elMoreBtn.innerText = 'More'
+    }
+}
 
 //EDITOR CONTROLLER
 function resizeContainer() { //resize the container to the img size
@@ -284,10 +318,10 @@ function drawText(currText) {//draw text in specified x,y location
 }
 
 function drawRectOnSelected() {//draw Rect around the selected text box
-    var { x, y, width, height, align} = gTexts[gCurrTextId]
+    var { x, y, width, height, align } = gTexts[gCurrTextId]
     //CALC POS
     if (align === 'left') x = x
-    else if (align === 'center') x -= width/2 // can be deleted but remain for readability
+    else if (align === 'center') x -= width / 2 // can be deleted but remain for readability
     else if (align === 'right') x -= width
     var th = 5
     var xStart = x - th
@@ -314,10 +348,10 @@ function renderMeme() {//render the selected img and than draw the text lines
 function onTextDrag(ev) {// change current text position
     gClickedPos = getEvPos(ev)
     var currText = gTexts[gCurrTextId]
-    if (currText.align === 'left') currText.x = gClickedPos.x - currText.width/2
+    if (currText.align === 'left') currText.x = gClickedPos.x - currText.width / 2
     else if (currText.align === 'center') currText.x = gClickedPos.x
-    else if (currText.align === 'right') currText.x = gClickedPos.x + currText.width/2
-    currText.y = gClickedPos.y - currText.height/2
+    else if (currText.align === 'right') currText.x = gClickedPos.x + currText.width / 2
+    currText.y = gClickedPos.y - currText.height / 2
 }
 
 function isPressed(text, offsetX, offsetY) {//return true if a text is pressed

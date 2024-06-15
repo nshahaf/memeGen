@@ -27,16 +27,18 @@
                 <input type="text" class="input-search round" placeholder="Search" oninput="onSearchInput(this)">
                 <i class="icon"></i>
             </div>
-            <div class="tags round">
-                <ul class="flex space-even align-center">
-                    <li onclick="onTagClick(this.innerText)">cute</li>
+            <div class="tags tags-top round">
+                <ul class="flex space-even align-center top-tags">
                     <li onclick="onTagClick(this.innerText)">baby</li>
-                    <li onclick="onTagClick(this.innerText)">man</li>
-                    <li onclick="onTagClick(this.innerText)">funny</li>
                 </ul>
             </div>
-            <button class="btn-tag round">More</button>
+            <button class="btn-tag round" value='0' onclick="onShowMore(this)">More</button>
         </section>
+        <div class="tags-more round" style="display: none;">
+            <ul class="more-tags flex space-even ">
+
+            </ul>
+        </div>
 
         <section class="gallery">
             <img src="/img/1.jpg" onclick="onImgClick(this,1)">

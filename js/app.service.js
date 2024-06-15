@@ -27,27 +27,27 @@ function getImgs() {//return the gImgs object
     return gImgs
 }
 
-function addImg(id,url,keywords) {//add an img to gImgs
-    var img = _createImg(id,url,keywords)
+function addImg(id, url, keywords) {//add an img to gImgs
+    var img = _createImg(id, url, keywords)
     gImgs.push(img)
 }
 
-function _createImg(id,url,keywords){//self used factory function
-    return {id,url,keywords}
+function _createImg(id, url, keywords) {//self used factory function
+    return { id, url, keywords }
 }
 
 function deleteImg(id) {//delete selected img from gImgs
     var index = gImgs.findIndex(img => img.id === id)
-    return gImgs.splice(index,1)
+    return gImgs.splice(index, 1)
 }
 
-function updateKeywords(id,keywords) {//update keywords in selected img
+function updateKeywords(id, keywords) {//update keywords in selected img
     img = gImgs.findIndex(img => img.id === id)
     img.keywords = keywords
 }
 
 function gMemeUpdate(id) {
-   return id
+    return id
 }
 
 function getCurrImg(src) { // get current used img object
@@ -62,4 +62,18 @@ function filterByKeyword(key) {//get key value and filter the imgs by that key, 
     const imgs = gImgs.filter(img => img.keywords.some(word => word.includes(key)))
     if (imgs.length === 0) return gImgs //if filter is not match, return all imgs
     else return imgs
+}
+
+function getSortedKeywords() {
+    const keywordMap = gImgs.reduce((acc, img) => {
+        img.keywords.forEach(keyword => {
+          acc[keyword] = (acc[keyword] || 0) + 1
+        })
+        return acc
+      }, {})
+
+      const keywordArray = Object.entries(keywordMap)
+      keywordArray.sort((a, b) => b[1] - a[1]);
+    
+    return keywordArray
 }
