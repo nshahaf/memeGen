@@ -10,7 +10,7 @@ header {
     margin-inline: 50px;
 
     font-size: 22px;
-    font-family: 'poppins-regular';
+    font-family: 'poppins-regular','poppins';
     color: var(--colorSecondaryBase);
 }
 
