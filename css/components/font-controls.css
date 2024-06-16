@@ -1,9 +1,11 @@
 .font-styleing {
     width: 90%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    /* gap: 5px; */
+    gap: 20px;
     padding: 20px;
+    max-width: 500px;
 
     
 
@@ -21,7 +23,13 @@
     padding: 0;
     width: 54px;
     height: 50px;
+    
 }
 .font-styleing > *:hover {
     border: 3px solid black;
+}
+
+.font-selector {
+    width: 150px;
+    text-align: center;
 }

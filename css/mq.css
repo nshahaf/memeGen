@@ -40,12 +40,16 @@
   }
   
 
-  .editor-container>* {
+  .editor-container > * {
     width: 480px;
     height: 360px;
     margin-inline: auto;
     margin-block: 10px;
 
+  }
+
+  .control-container {
+    height: fit-content;
   }
 }
 
@@ -65,11 +69,10 @@
     gap: 20px;
   }
 
-  
-
-  .editor-container>* {
+  .editor-container > * {
     margin-inline: auto;
     margin-block: 10px;
+    
   }
 
   .canvas-container {
@@ -78,6 +81,7 @@
 
   .control-container {
     margin-block-end: 20px;
+    
   }
 
 
@@ -102,6 +106,7 @@
     width: 100%;
     gap: 20px;
   }
+  
 }
 
 
@@ -115,4 +120,16 @@
     grid-template-columns: minmax(20px, 1fr) 1280px minmax(20px, 1fr);
   }
 
+  .editor-container {
+    gap:0;
+    justify-content: space-evenly;
+  }
+
+  .editor-container > * {
+    margin-inline: 0;
+  }
+  .canvas-container {
+    width: 472px;
+  }
+  
 }
