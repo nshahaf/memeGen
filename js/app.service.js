@@ -46,10 +46,6 @@ function updateKeywords(id, keywords) {//update keywords in selected img
     img.keywords = keywords
 }
 
-function gMemeUpdate(id) {
-    return id
-}
-
 function getCurrImg(src) { // get current used img object
     // console.log('getImg')
     let img = new Image()
@@ -64,7 +60,7 @@ function filterByKeyword(key) {//get key value and filter the imgs by that key, 
     else return imgs
 }
 
-function getSortedKeywords() {
+function getSortedKeywords() {//return sorted keywords array
     const keywordMap = gImgs.reduce((acc, img) => {
         img.keywords.forEach(keyword => {
           acc[keyword] = (acc[keyword] || 0) + 1

@@ -12,7 +12,7 @@ var gIsClicked = false // mouse click
 var gIsDrag = false // enable text drag
 
 
-//MAIN
+//Init
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -70,6 +70,7 @@ function onMove(ev) {
     onTextDrag(ev)
 }
 
+
 //GALLERY CONTROLLER
 function renderGallery() {//render the img gallery from the gImgs array
     var gellary = document.querySelector('.gallery')
@@ -77,9 +78,16 @@ function renderGallery() {//render the img gallery from the gImgs array
     // var imgs = getImgs()
     var imgs = filterByKeyword(gSearchKey)
 
+    //UPLOAD BUTTON HTML STRING
+    var uploadHTML = ` 
+        <button class="user-img-button" onclick="document.querySelector('.user-img').click()"> <i class="fa-solid fa-upload"></i>Upload file
+                <input type="file" name="user-img" class="user-img" hidden oninput="onImgInput(event)">
+        </button>`
+
+    //GALERRY IMGS HTML STRING
     var strHTML = imgs.map(img => `
         <img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
-    gellary.innerHTML = strHTML.join('')
+    gellary.innerHTML = uploadHTML + strHTML.join('')
 
     renderKeywords()
 }
@@ -96,7 +104,6 @@ function onImgClick(el, id) {//handle img click gallery section
     document.querySelector('.editor-container').style.display = 'flex'
     document.querySelector('.gallery-container').style.display = 'none'
 
-    gMemeUpdate(id)
     getCurrImg(el.src)
     drawCurrImg()
     gIsSelected = true
@@ -143,6 +150,7 @@ function onShowMore(elMoreBtn){
         elMoreBtn.innerText = 'More'
     }
 }
+
 
 //EDITOR CONTROLLER
 function resizeContainer() { //resize the container to the img size
@@ -379,5 +387,36 @@ function updateTextControlls() {//on select, update the controlls to match the c
     document.querySelector('.btn-stroke').value = currText.stroke
     document.querySelector('.btn-fill').value = currText.fill
 
+}
+
+//RANDOMIZE IMG
+function onRandom() {
+    //RAND IMG
+    const imgs = getImgs()
+    const randImg = imgs[getRandomInt(0,imgs.length)]
+    gIsSelected = true
+    getCurrImg(randImg.url)
+    
+    //RAND TEXT
+    const elMemeText = document.querySelector('.meme-text')
+    gTextInput = randomText(2)
+    gTexts[0].text = gTextInput
+
+    //RENDER
+    elMemeText.value = gTextInput
+    elMemeText.focus()
+    renderMeme()
+}
+
+function randomText(n){
+    var text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, dolorum optio vero natus eligendi corrupti adipisci commodi excepturi, illum animi quis, minus iure. Doloremque, eos rerum laboriosam dignissimos assumenda iste.'
+    var words = text.split(' ')
+    var text = []
+
+    for (var i = 0;i<n;i++) {
+        text.push(words[getRandomInt(0,words.length)])
+    }
+    
+    return text.join(' ')
 }
 

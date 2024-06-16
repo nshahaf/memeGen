@@ -15,10 +15,12 @@
             <div class="navbar-logo">Meme Generator</div>
             <div class="navbar-links flex">
                 <a data-name="gallery" onclick="onGalleryClick()">Gallery</a>
-                <a href="#">About</a>
+                <a class="navbar-link random-link" onclick="onRandom()">Random</a>
             </div>
         </nav>
     </header>
+
+
 
 
     <section class="gallery-container" style="display: none;">
@@ -45,9 +47,9 @@
         </section>
 
 
-    </section> 
+    </section>
 
-    <section class="editor-container" >
+    <section class="editor-container">
         <div class="canvas-container">
             <canvas height="200" width="200"></canvas>
         </div>
@@ -61,7 +63,7 @@
                 <button class="btn control-add" type="button" onclick="onAdd()">
                     <i class="fa-solid fa-plus"></i>
                 </button>
-                <button class="btn control-erase" type="button" onclick="onErase()"> 
+                <button class="btn control-erase" type="button" onclick="onErase()">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </div>
@@ -83,7 +85,7 @@
                     <option value="verdana">VERDANA</option>
                     <option value="tahoma">TAHOMA</option>
                     <option value="trebuchet ms">TREBUCHET MS</option>
-                    <option value="times new roman">TIMES NEW  ROMAN</option>
+                    <option value="times new roman">TIMES NEW ROMAN</option>
                     <option value="georgia">GEORGIA</option>
                     <option value="garamond">GARAMOND</option>
                     <option value="courier new">COURIER NEW</option>
@@ -92,7 +94,8 @@
                 </select>
                 <button class="btn btn-stroke" onclick="document.querySelector('.btn-stroke input').click()">
                     <i class="fa-solid fa-brush"></i>
-                    <input type="color" name="stroke" oninput="onStrokeInput(this)" style="opacity: 0; position: absolute;">
+                    <input type="color" name="stroke" oninput="onStrokeInput(this)"
+                        style="opacity: 0; position: absolute;">
                 </button>
                 <button class="btn btn-fill" onclick="document.querySelector('.btn-fill input').click()">
                     <i class="fa-solid fa-fill-drip"></i>
@@ -102,7 +105,8 @@
             </div>
             <div class="file-managment">
                 <button class="btn-share" onclick="onUploadImg()">Share</button>
-                <button class="btn-download" onclick="document.getElementById('download-link').click()">Download</button>
+                <button class="btn-download"
+                    onclick="document.getElementById('download-link').click()">Download</button>
                 <a href="#" id="download-link" onclick="onDownload(this)" download hidden></a>
             </div>
         </div>
@@ -116,7 +120,7 @@
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/sharing-service.js"></script>
     <script src="js/services/storage.service.js"></script>
-    
+
     <script src="js/app.service.js"></script>
     <script src="js/app.controller.js"></script>
 </body>

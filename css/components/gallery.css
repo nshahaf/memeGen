@@ -94,14 +94,6 @@ div.tags-more {
     border: none;
 }
 
-/* GALLERY  */
-/* 
-width 200px 
-aspect-retio 1
-gap 30px
-margin inline 55px
-*/
-
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -122,3 +114,27 @@ margin inline 55px
     border-radius: 2em;
     box-shadow: 2px 4px 9px 0px;
 }
+
+.gallery .user-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 2em;
+    background-color: var(--colorPrimaryBase);
+    
+    
+}
+.gallery .user-img-button{
+    width: 200px;
+    height: 200px;
+    border-radius: 2em;
+    background-color: var(--colorPrimaryBase);
+    color: var(--colorPrimary2);
+    border: none;
+    font-size: 1.2em;
+}
+
+.user-img-button i {
+    margin-inline-end: 5px;
+}
+
+
