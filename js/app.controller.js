@@ -47,11 +47,9 @@ function onDown(ev) {
     gIsClicked = true
     //get the current click event position
     const { offsetX, offsetY } = ev
-    console.log('offsetX:',offsetX , 'offsetY:' ,offsetY)
 
     //check if a text is pressed and get his index
     const idx = gTexts.findIndex(text => isPressed(text, offsetX, offsetY))
-    console.log('idx:',idx)
     if (idx !== -1) {
         gCurrTextId = idx
         gIsDrag = true
@@ -101,7 +99,6 @@ function renderGallery() {//render the img gallery from the gImgs array
 function onGalleryClick() {// handle gallery click in nav bar
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'block'
-    document.querySelector('.saved-container').style.display = 'none'
     document.querySelector(".search input").focus()
 
 }
@@ -117,7 +114,7 @@ function onImgClick(el, id) {//handle img click gallery section
 }
 
 function onSearchInput({ value }) {
-    console.log('value:', value)
+    // console.log('value:', value)
     gSearchKey = value
     renderGallery()
 }
@@ -161,7 +158,6 @@ function onShowMore(elMoreBtn) {
 
 //EDITOR CONTROLLER
 function resizeContainer() { //resize the container to the img size
-
     // console.log('resizeContainer()')
     //resize the container to the img size
     const elContainer = document.querySelector('.canvas-container')
@@ -203,7 +199,7 @@ function onErase() {//on text Erase button click
 }
 
 function clearCanvas() { // clear the intire canvas
-    console.log('clearCanvas()')
+    // console.log('clearCanvas()')
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     gCtx.fillStyle = 'rgb(56, 59, 66)'
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
@@ -279,7 +275,7 @@ function onFontChange({ value }) {// on font change
 
 function onAlignClick(value) {// on alignment change
     gTexts[gCurrTextId].align = value
-    console.log('value:', value)
+    // console.log('value:', value)
     renderMeme()
 }
 
@@ -300,7 +296,7 @@ function onSwitchLine() {//toggle between the selected lines
     if (gCurrTextId < maxIdx) gCurrTextId += 1
     else gCurrTextId = 0
 
-    console.log('gCurrTextId:', gCurrTextId)
+    // console.log('gCurrTextId:', gCurrTextId)
     updateTextControlls()
     renderMeme()
 }
@@ -342,7 +338,8 @@ function drawRectOnSelected() {//draw Rect around the selected text box
     if (align === 'left') x = x
     else if (align === 'center') x -= width / 2 // can be deleted but remain for readability
     else if (align === 'right') x -= width
-    var th = 5
+    // var th = 5
+    var th = 20
     var xStart = x - th
     var yStart = y - height / 2 - th
 
@@ -380,10 +377,12 @@ function isPressed(text, offsetX, offsetY) {//return true if a text is pressed
     var lth = 20
     var cth = 20
     var rth = 20
+    var yth = 20
 
     if (text.align === 'left') { return offsetX >= text.x + lth && offsetX <= text.x + text.width + lth && offsetY >= text.y && offsetY <= text.y + text.height }
-    else if (text.align === 'center') { return offsetX >= text.x - text.width / 2 && offsetX <= text.x + text.width / 2 + cth && offsetY >= text.y && offsetY <= text.y + text.height }
+    else if (text.align === 'center') { return offsetX >= text.x - text.width / 2 - cth && offsetX <= text.x + text.width / 2 + cth && offsetY >= text.y - yth&& offsetY <= text.y + text.height + yth }
     else if (text.align === 'right') { return offsetX >= text.x - text.width + rth && offsetX <= text.x + rth && offsetY >= text.y && offsetY <= text.y + text.height }
+    
 }
 
 function getHeightAndWidth(text) {//return the height and width of a given text
