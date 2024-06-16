@@ -81,3 +81,11 @@ li:hover{
   text-decoration: underline;
 }
 
+.navbar-links {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
+

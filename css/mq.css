@@ -9,16 +9,39 @@
   }
 
   header {
+    position: relative;
     margin: 10px auto;
     height: 50px;
 
     /* GALLERY */
   }
 
+
+  /* .navbar-links a:not(:first-child) {
+    display: none;
+  } */
+
+  a.navbar-icon {
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 90%;
+  }
+
   .navbar-links {
-    justify-content: right;
+    display: flex;
+    position: absolute;
+    top: 75px;
+    left: 40%;
+    flex-direction: column;
+    align-items: end;
     gap: 20px;
   }
+
+  .navbar-links.hide {
+    display: none;
+  }
+
 
   .search {
     display: block;
@@ -38,9 +61,10 @@
   .btn-tag {
     display: none;
   }
+
   
 
-  .editor-container > * {
+  .editor-container>* {
     width: 480px;
     height: 360px;
     margin-inline: auto;
@@ -63,16 +87,29 @@
     grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
   }
 
-
+  header {
+    position: relative;
+  }
+  .navbar-container {
+    justify-content: space-between;
+    margin-inline-start: 15px;
+    margin-inline-end: 0px;
+  }
   .navbar-links {
-    justify-content: right;
-    gap: 20px;
+    display: flex;
+    gap: 15px;
+    
   }
 
-  .editor-container > * {
+  a.navbar-icon {
+    display: none;
+  }
+
+
+  .editor-container>* {
     margin-inline: auto;
     margin-block: 10px;
-    
+
   }
 
   .canvas-container {
@@ -81,7 +118,6 @@
 
   .control-container {
     margin-block-end: 20px;
-    
   }
 
 
@@ -92,6 +128,19 @@
   .page-layout {
     grid-template-columns: minmax(20px, 1fr) 920px minmax(20px, 1fr);
     grid-template-rows: auto fit-content;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+    margin-inline-start: 125px;
+    margin-inline-end: 0px;
+  }
+
+  
+  .navbar-links {
+    display: flex;
+    gap: 50px;
+    
   }
 
   .gallery-container {
@@ -106,7 +155,7 @@
     width: 100%;
     gap: 20px;
   }
-  
+
 }
 
 
@@ -120,16 +169,30 @@
     grid-template-columns: minmax(20px, 1fr) 1280px minmax(20px, 1fr);
   }
 
+  .navbar-container {
+    justify-content: space-between;
+    margin-inline-start: 250px;
+    margin-inline-end: 100px;
+  }
+
+  
+  .navbar-links {
+    display: flex;
+    gap: 50px;
+    
+  }
+
   .editor-container {
-    gap:0;
+    gap: 0;
     justify-content: space-evenly;
   }
 
-  .editor-container > * {
+  .editor-container>* {
     margin-inline: 0;
   }
+
   .canvas-container {
     width: 472px;
   }
-  
+
 }

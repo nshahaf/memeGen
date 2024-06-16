@@ -422,35 +422,14 @@ function randomText(n) {
 }
 
 
-//SAVE CONTROLLER
-function onSaveBtn() {
-    if (!gIsSelected) return
-    console.log('saving!')
-    const img = gElCanvas.toDataURL("image/png")
-    saveImg(img, gCurrImg, gTexts)
-    console.log(gSavedImgs)
-}
+//RESPONSIVE NAV BAR
+function onNavClick() {
+    const elNav = document.querySelector('.navbar-links')
+    console.log(elNav.classList)
+    if (elNav.classList.value === 'navbar-links') elNav.classList = 'navbar-links hide'
+    else elNav.classList = 'navbar-links'
 
-function onSavedImg(idx) {
-    gCurrImg = gSavedImgs[idx].src
-    gTexts = gSavedImgs[idx].text
-    gIsSelected = true
-    renderMeme()
-    document.querySelector('.editor-container').style.display = 'flex'
-    document.querySelector('.gallery-container').style.display = 'none'
-    document.querySelector(".saved-container").style.display = 'none'
-
-}
-function renderSavedImgs() {
-    var savedImgsGallery = document.querySelector(".saved-container .saved-gallery")
-    var strHTML = gSavedImgs.map((savedImg, idx) => `
-        <img src="${savedImg.img}" onclick="onSavedImg(${idx})"`)
-    savedImgsGallery.innerHTML = strHTML.join('')
-}
-
-function onSaveTab() {
-    renderSavedImgs()
-    document.querySelector('.editor-container').style.display = 'none'
-    document.querySelector('.gallery-container').style.display = 'none'
-    document.querySelector(".saved-container").style.display = 'block'
+    // if(elNav.style.display === 'none'  || elNav.style.display === '') elNav.style.display = 'flex'
+    // else if(elNav.style.display === 'flex') elNav.style.display = 'none'
+    
 }
