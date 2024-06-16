@@ -131,6 +131,7 @@ div.tags-more {
     color: var(--colorPrimary2);
     border: none;
     font-size: 1.2em;
+    box-shadow: 2px 4px 9px 0px black;
 }
 
 .user-img-button i {

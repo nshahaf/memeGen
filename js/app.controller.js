@@ -86,7 +86,7 @@ function renderGallery() {//render the img gallery from the gImgs array
 
     //GALERRY IMGS HTML STRING
     var strHTML = imgs.map(img => `
-        <img src="/${img.url}" onclick="onImgClick(this,${img.id})">`)
+        <img src="${img.url}" onclick="onImgClick(this,${img.id})">`)
     gellary.innerHTML = uploadHTML + strHTML.join('')
 
     renderKeywords()
@@ -95,6 +95,7 @@ function renderGallery() {//render the img gallery from the gImgs array
 function onGalleryClick() {// handle gallery click in nav bar
     document.querySelector('.editor-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'block'
+    document.querySelector('.saved-container').style.display = 'none'
     document.querySelector(".search input").focus()
 
 }
@@ -130,20 +131,20 @@ function renderKeywords() {
 
     var elTopTags = document.querySelector(".top-tags")
     var strHTML = topKeywords.map(keyword => `
-        <li onclick="onTagClick(this.innerText)" style="font-size:${fontSize-=2}px;">${keyword[0]}</li>`)
+        <li onclick="onTagClick(this.innerText)" style="font-size:${fontSize -= 2}px;">${keyword[0]}</li>`)
     elTopTags.innerHTML = strHTML.join('')
-    
+
     var elMoreTags = document.querySelector(".more-tags")
     var strHTML = moreKeywords.map(keyword => `
         <li onclick="onTagClick(this.innerText)" style="font-size:${fontSize--}px;">${keyword[0]}</li>`)
     elMoreTags.innerHTML = strHTML.join('')
 }
 
-function onShowMore(elMoreBtn){
+function onShowMore(elMoreBtn) {
     const elMoreTags = document.querySelector('.tags-more')
-   
+
     if (elMoreBtn.innerText === 'More') {
-        elMoreTags.style.display = 'block' 
+        elMoreTags.style.display = 'block'
         elMoreBtn.innerText = 'Hide'
     } else {
         elMoreTags.style.display = 'none'
@@ -393,10 +394,10 @@ function updateTextControlls() {//on select, update the controlls to match the c
 function onRandom() {
     //RAND IMG
     const imgs = getImgs()
-    const randImg = imgs[getRandomInt(0,imgs.length)]
+    const randImg = imgs[getRandomInt(0, imgs.length)]
     gIsSelected = true
     getCurrImg(randImg.url)
-    
+
     //RAND TEXT
     const elMemeText = document.querySelector('.meme-text')
     gTextInput = randomText(2)
@@ -408,15 +409,48 @@ function onRandom() {
     renderMeme()
 }
 
-function randomText(n){
+function randomText(n) {
     var text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, dolorum optio vero natus eligendi corrupti adipisci commodi excepturi, illum animi quis, minus iure. Doloremque, eos rerum laboriosam dignissimos assumenda iste.'
     var words = text.split(' ')
     var text = []
 
-    for (var i = 0;i<n;i++) {
-        text.push(words[getRandomInt(0,words.length)])
+    for (var i = 0; i < n; i++) {
+        text.push(words[getRandomInt(0, words.length)])
     }
-    
+
     return text.join(' ')
 }
 
+
+//SAVE CONTROLLER
+function onSaveBtn() {
+    if (!gIsSelected) return
+    console.log('saving!')
+    const img = gElCanvas.toDataURL("image/png")
+    saveImg(img, gCurrImg, gTexts)
+    console.log(gSavedImgs)
+}
+
+function onSavedImg(idx) {
+    gCurrImg = gSavedImgs[idx].src
+    gTexts = gSavedImgs[idx].text
+    gIsSelected = true
+    renderMeme()
+    document.querySelector('.editor-container').style.display = 'flex'
+    document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector(".saved-container").style.display = 'none'
+
+}
+function renderSavedImgs() {
+    var savedImgsGallery = document.querySelector(".saved-container .saved-gallery")
+    var strHTML = gSavedImgs.map((savedImg, idx) => `
+        <img src="${savedImg.img}" onclick="onSavedImg(${idx})"`)
+    savedImgsGallery.innerHTML = strHTML.join('')
+}
+
+function onSaveTab() {
+    renderSavedImgs()
+    document.querySelector('.editor-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'none'
+    document.querySelector(".saved-container").style.display = 'block'
+}

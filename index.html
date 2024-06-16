@@ -16,6 +16,7 @@
             <div class="navbar-links flex">
                 <a data-name="gallery" onclick="onGalleryClick()">Gallery</a>
                 <a class="navbar-link random-link" onclick="onRandom()">Random</a>
+                <a class="navbar-link save-link" onclick="onSaveTab()">Saved</a>
             </div>
         </nav>
     </header>
@@ -104,6 +105,7 @@
 
             </div>
             <div class="file-managment">
+                <button class="btn-save" onclick="onSaveBtn()">Save</button>
                 <button class="btn-share" onclick="onUploadImg()">Share</button>
                 <button class="btn-download"
                     onclick="document.getElementById('download-link').click()">Download</button>
@@ -112,7 +114,12 @@
         </div>
 
     </section>
+    <section class="saved-container" style="display: none;">
+        <section class="saved-gallery">
+            <img src="/img/1.jpg" onclick="onSavedImg()">
+        </section>
 
+    </section>
     <footer class="footer"></footer>
 
 

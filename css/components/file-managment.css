@@ -14,14 +14,20 @@
 }
 
 .btn-share{
-    filter: drop-shadow(0px 4px 0px rgb(22, 92, 156));
-    box-shadow: inset 0px 3px 0px rgb(84, 178, 232);
-    background-color: rgb(30, 124, 211);
+    filter: drop-shadow(0px 4px 0px rgb(49, 129, 100));
+    box-shadow: inset 0px 3px 0px rgb(122, 205, 174);
+    background-color: rgb(70, 185, 143);
 }
 .btn-download{
     filter: drop-shadow(0px 4px 0px rgb(99, 38, 135));
     box-shadow: inset 0px 3px 0px rgb(186, 125, 215);
     background-color: rgb(143, 68, 187);
     
+}
+
+.btn-save {
+    filter: drop-shadow(0px 4px 0px rgb(22, 92, 156));
+    box-shadow: inset 0px 3px 0px rgb(84, 178, 232);
+    background-color: rgb(30, 124, 211);
 }
 
