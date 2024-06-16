@@ -7,4 +7,5 @@
 canvas {
     border-radius: 3em;
     padding: 5px;
+    cursor: grab;
 }

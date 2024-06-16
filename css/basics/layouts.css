@@ -10,7 +10,7 @@ header {
 }
 
 .gallery-container,
-.editor-container,.saved-container {
+.editor-container {
     grid-area: 2/2;
 }
 
@@ -22,19 +22,6 @@ header {
 .editor-container>* {
     border-radius: 3em;
     background-color: var(--colorPrimary1);
-}
-
-.saved-container .saved-gallery {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.saved-container img {
-    width: 200px;
-    height: 200px;
-    border-radius: 2em;
-
 }
 
 .control-container {
