@@ -86,7 +86,7 @@ function renderGallery() {//render the img gallery from the gImgs array
 
     //GALERRY IMGS HTML STRING
     var strHTML = imgs.map(img => `
-        <img src="${img.url}" onclick="onImgClick(this,${img.id})">`)
+        <img src="./${img.url}" onclick="onImgClick(this,${img.id})">`)
     gellary.innerHTML = uploadHTML + strHTML.join('')
 
     renderKeywords()
